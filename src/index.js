@@ -1,13 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import CounterContainer from './CounterContainer.js';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux'
+import counterReducer from './reducers.js';
 import * as serviceWorker from './serviceWorker';
 
+const store = createStore(counterReducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+	<Provider store={store}>
+		<React.StrictMode>
+		    <CounterContainer />
+		</React.StrictMode>
+	</Provider>,
   document.getElementById('root')
 );
 
